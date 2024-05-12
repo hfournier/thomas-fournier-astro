@@ -1,0 +1,33 @@
+---
+// import "../styles/fonts.css"
+import "../styles/tailwind.css"
+import Header from "@components/Header.astro"
+import Footer from "@components/Footer.astro"
+---
+
+<html lang="en" class="scrollable scroll-smooth">
+	<head>
+		<meta charset="utf-8" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;500;600;700&family=Montserrat:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+			rel="stylesheet"
+		/>
+		<title>Thomas Fournier - Actor | Performer | Writer</title>
+		<meta
+			name="description"
+			content="Thomas Fournier is an actor, performer and writer based in Toronto, ON Canada"
+		/>
+	</head>
+	<body class="mx-auto max-w-7xl bg-neutral-900 font-montserrat text-neutral-100">
+		<Header />
+		<main class="snap-y snap-mandatory">
+			<slot />
+		</main>
+		<Footer />
+	</body>
+</html>
