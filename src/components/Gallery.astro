@@ -37,6 +37,7 @@ const gallery = await getCollection("gallery")
 				alt={`${item.data.role} in ${item.data.play} by ${item.data.author}`}
 				widths={[362, 570, 691, 768, 1152]}
 				sizes={`(min-width: 1280px) 1152px, 90vw`}
+				loading={"eager"}
 			/>
 		</Dialog>
 	))
