@@ -8,7 +8,7 @@ import headshot_3 from "@assets/hero/headshot-3.jpg"
 
 <div id="caroussel" class="grid grid-cols-1 grid-rows-1 overflow-x-hidden">
 	<Image
-		class="animate-slide1 col-start-1 row-start-1"
+		class="col-start-1 row-start-1 animate-slide1"
 		src={headshot_1}
 		alt="Thomas Fournier headshot #1"
 		loading={"eager"}
@@ -16,7 +16,7 @@ import headshot_3 from "@assets/hero/headshot-3.jpg"
 		widths={[360, 396, 432, 768, 1024, 1280]}
 	/>
 	<Image
-		class="animate-slide2 col-start-1 row-start-1 -translate-x-full"
+		class="col-start-1 row-start-1 -translate-x-full animate-slide2"
 		src={headshot_2}
 		alt="Thomas Fournier headshot #2"
 		loading={"eager"}
@@ -24,7 +24,7 @@ import headshot_3 from "@assets/hero/headshot-3.jpg"
 		widths={[360, 396, 432, 768, 1024, 1280]}
 	/>
 	<Image
-		class="animate-slide3 col-start-1 row-start-1 translate-x-full"
+		class="col-start-1 row-start-1 translate-x-full animate-slide3"
 		src={headshot_3}
 		alt="Thomas Fournier headshot #3"
 		loading={"eager"}
@@ -32,18 +32,17 @@ import headshot_3 from "@assets/hero/headshot-3.jpg"
 		widths={[360, 396, 432, 768, 1024, 1280]}
 	/>
 	<div
-		class="caroussel-text z-10 col-start-1 row-start-2 flex flex-col items-center justify-center gap-2 py-8 sm:row-start-1 sm:items-start sm:px-10 sm:py-0 md:px-24 lg:gap-4 lg:px-36 xl:gap-6 xl:px-44">
+		class="caroussel-text z-10 col-start-1 row-start-2 flex flex-col items-center justify-center gap-2 py-8 sm:row-start-1 sm:items-start sm:px-10 sm:py-0 md:px-20 lg:gap-4 lg:px-32 xl:gap-6 xl:px-44">
 		<h1
-			class="sm:animate-slide-text w-fit font-josefin text-3xl text-neutral-100 sm:text-2xl sm:font-medium md:text-3xl md:font-semibold lg:text-4xl lg:font-bold xl:text-5xl">
+			class="w-fit font-josefin text-2xl text-neutral-100 sm:animate-slide-text sm:font-medium md:font-semibold lg:font-bold">
 			Thomas Fournier
 		</h1>
-		<h2
-			class="sm:animate-slide-text w-fit font-josefin text-neutral-50 md:text-lg md:font-medium lg:text-xl xl:text-2xl">
+		<h2 class="w-fit font-josefin text-lg text-neutral-50 sm:animate-slide-text md:font-medium">
 			Actor | Performer | Writer
 		</h2>
-		<div class="sm:animate-slide-text mt-4 w-fit">
+		<div class="mt-4 w-fit sm:animate-slide-text">
 			<a
-				class="max-w-fit rounded border border-neutral-100 px-4 py-2 text-neutral-50 hover:bg-neutral-300 hover:text-neutral-900 hover:shadow-lg hover:shadow-neutral-300/30 md:font-medium lg:text-lg xl:text-xl"
+				class="max-w-fit rounded border border-neutral-100 px-4 py-2 text-sm text-neutral-50 hover:bg-neutral-300 hover:text-neutral-900 hover:shadow-lg hover:shadow-neutral-300/30 md:font-medium"
 				href="#contact">Contact Me</a
 			>
 		</div>

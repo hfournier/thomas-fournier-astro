@@ -3,6 +3,20 @@ import "../styles/fonts.css"
 import "../styles/tailwind.css"
 import Header from "@components/Header.astro"
 import Footer from "@components/Footer.astro"
+import thomas_fournier from "@assets/thomas-fournier.jpg"
+import { getImage } from "astro:assets"
+const tfImage = await getImage({
+	src: thomas_fournier,
+	format: "jpg"
+})
+const ogImage = new URL(tfImage.src, Astro.url)
+const title = "Thomas Fournier - Actor | Performer | Writer"
+const description =
+	"Thomas is a storyteller, actor, singer, playwright, and director based in Toronto."
+const alt = "Thomas Fournier headshot"
+const firstName = "Thomas"
+const lastName = "Fournier"
+const siteName = "Thomas Fournier"
 ---
 
 <html lang="en" class="scrollable scroll-smooth">
@@ -11,11 +25,21 @@ import Footer from "@components/Footer.astro"
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Thomas Fournier - Actor | Performer | Writer</title>
-		<meta
-			name="description"
-			content="Thomas Fournier is an actor, performer and writer based in Toronto, ON Canada"
-		/>
+		<title>{title}</title>
+		<meta name="description" content={description} />
+		<meta property="og:title" content={title} />
+		<meta property="og:description" content={description} />
+		<meta property="og:type" content="profile" />
+		<meta property="og:url" content={Astro.url.origin} />
+		<meta property="og:image" content={ogImage.href} />
+		<meta property="og:image:url" content={ogImage.href} />
+		<meta property="og:image:type" content="image/jpeg" />
+		<meta property="og:image:height" content={tfImage.attributes.height} />
+		<meta property="og:image:width" content={tfImage.attributes.width} />
+		<meta property="og:image:alt" content={alt} />
+		<meta property="og:site_name" content={siteName} />
+		<meta property="profile:first_name" content={firstName} />
+		<meta property="profile:last_name" content={lastName} />
 	</head>
 	<body class="mx-auto max-w-7xl bg-neutral-900 font-montserrat text-neutral-100">
 		<Header />

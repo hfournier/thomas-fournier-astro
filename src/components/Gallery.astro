@@ -32,7 +32,7 @@ const gallery = await getCollection("gallery")
 			play={item.data.play}
 			author={item.data.author}>
 			<Image
-				class="h-full w-full max-w-fit object-contain"
+				class="h-full max-h-[70dvh] w-full object-scale-down"
 				src={item.data.image}
 				alt={`${item.data.role} in ${item.data.play} by ${item.data.author}`}
 				widths={[362, 570, 691, 768, 1152]}
