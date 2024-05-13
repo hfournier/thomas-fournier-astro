@@ -4,13 +4,13 @@
 
 @layer base {
 	.scrollable::-webkit-scrollbar {
-		@apply h-2 w-2 bg-neutral-200 dark:bg-neutral-800;
+		@apply h-2 w-2 bg-neutral-800;
 	}
 	.scrollable::-webkit-scrollbar-track {
-		@apply my-1 rounded-full bg-neutral-200 dark:bg-neutral-800;
+		@apply my-1 rounded-full bg-neutral-800;
 	}
 	.scrollable::-webkit-scrollbar-thumb {
-		@apply rounded-full bg-neutral-400 hover:bg-neutral-500 dark:bg-neutral-600 dark:hover:bg-neutral-500;
+		@apply rounded-full bg-neutral-600 hover:bg-neutral-500;
 	}
 	.dark .scrollable::-webkit-scrollbar {
 		@apply bg-neutral-800;

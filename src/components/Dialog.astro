@@ -1,54 +1,42 @@
 ---
 import { Icon } from "astro-icon/components"
-import Button from "./Button.astro"
 
 export interface Props extends Omit<astroHTML.JSX.DialogHTMLAttributes, "class"> {
-	heading: string
+	part: string
+	play: string
+	author: string
 	class?: string
 }
-const { heading, class: classList, ...attrs } = Astro.props
+const { part, play, author, class: classList, ...attrs } = Astro.props
 ---
 
 <dialog
-	class:list={[
-		"w-[90dvw] bg-transparent backdrop:bg-neutral-950/70 md:w-[75dvw] lg:w-[50dvw]",
-		classList
-	]}
+	class:list={["bg-transparent backdrop:bg-neutral-950/70", classList]}
 	{...attrs}
-	aria-label={heading}
->
+	aria-label={part}>
 	<div
 		id="div_dialog"
-		class="grid grid-cols-1 grid-rows-[auto,_1fr,_auto] divide-y-[1px] divide-neutral-300 rounded-lg border border-neutral-300 bg-transparent dark:divide-neutral-700 dark:border-neutral-700 dark:bg-neutral-900"
-	>
-		<header
-			class="flex items-center justify-between rounded-t-lg bg-neutral-100 px-4 py-3 dark:bg-neutral-950"
-		>
-			<h3 class="text-2xl font-medium">{heading}</h3>
-			<button
-				id="dialogClose"
-				class="rounded-sm p-2 text-neutral-600 outline-none hover:text-neutral-700 focus-visible:ring-2 focus-visible:ring-indigo-600 focus-visible:ring-offset-4 focus-visible:ring-offset-neutral-100 dark:text-neutral-400 dark:hover:text-neutral-300 dark:focus-visible:ring-indigo-500 dark:focus-visible:ring-offset-neutral-950"
-			>
-				<span class="sr-only">Close</span>
-				<Icon class="size-6" aria-hidden="true" name="mdi:close" />
-			</button>
-		</header>
-		<div
-			class="scrollable max-h-[70dvh] overflow-y-auto overscroll-contain bg-neutral-50 p-4 dark:bg-neutral-900"
-		>
+		class="relative grid h-fit grid-cols-1 grid-rows-[minmax(0,_1fr),_auto] rounded-sm bg-neutral-50 p-4">
+		<div class="max-h-[75dvh]">
 			<slot />
 		</div>
-		<footer
-			class="flex items-center justify-end gap-2 rounded-b-lg bg-neutral-100 p-4 dark:bg-neutral-950"
-		>
-			<Button id="btnClose">Close</Button>
+		<footer class="space-y-1.5 bg-neutral-50 pt-4">
+			<h3 class="font-josefin text-xl font-medium">{part}</h3>
+			<div class="">{play}</div>
+			<div class="text-sm">Written by {author}</div>
 		</footer>
+		<button
+			id="dialogClose"
+			class="absolute -top-3 right-1 col-start-1 row-start-1 rounded-full border-4 border-neutral-800 bg-neutral-50/70 p-2 text-neutral-800 outline-none backdrop-blur-sm hover:bg-neutral-50 hover:text-neutral-700 focus-visible:ring-2 focus-visible:ring-purple-600 focus-visible:ring-offset-4 focus-visible:ring-offset-neutral-100">
+			<span class="sr-only">Close</span>
+			<Icon class="size-6" aria-hidden="true" name="mdi:close" />
+		</button>
 	</div>
 </dialog>
 
 <style>
 	:root {
-		--opening-duration: 0.3s;
+		--opening-duration: 0.4s;
 	}
 
 	dialog[open] {
@@ -93,28 +81,21 @@ const { heading, class: classList, ...attrs } = Astro.props
 </style>
 
 <script>
-	document.addEventListener("astro:page-load", () => {
-		const dialogs = document.getElementsByTagName("dialog")
-		if (dialogs && dialogs.length > 0) {
-			for (const dialog of dialogs) {
-				dialog.addEventListener("click", () => {
-					dialog.close()
-				})
+	const dialogs = document.getElementsByTagName("dialog")
+	if (dialogs && dialogs.length > 0) {
+		for (const dialog of dialogs) {
+			dialog.addEventListener("click", () => {
+				dialog.close()
+			})
 
-				dialog.firstElementChild?.addEventListener("click", (e) => {
-					e.stopPropagation()
-				})
+			dialog.firstElementChild?.addEventListener("click", (e) => {
+				e.stopPropagation()
+			})
 
-				const dialogClose = dialog.querySelector("#dialogClose")
-				dialogClose!.addEventListener("click", () => {
-					dialog.close()
-				})
-
-				const btnClose = dialog.querySelector("#btnClose")
-				btnClose!.addEventListener("click", () => {
-					dialog.close()
-				})
-			}
+			const dialogClose = dialog.querySelector("#dialogClose")
+			dialogClose!.addEventListener("click", () => {
+				dialog.close()
+			})
 		}
-	})
+	}
 </script>
