@@ -18,7 +18,7 @@ const gallery = await getCollection("gallery")
 						src={item.data.image}
 						alt={`${item.data.role} in ${item.data.play} by ${item.data.author}`}
 						widths={[280, 360, 384, 476, 607]}
-						sizes={`(min-width: 1280px) 280px, (min-width: 1024px) 384px, (min-width: 768px) 476px, (min-width: 640px) 360px, 100vw`}
+						sizes={`(min-width: 1280px) 280px, (min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw`}
 					/>
 				</button>
 			))
@@ -30,13 +30,15 @@ const gallery = await getCollection("gallery")
 			id={`dlg_${item.id}`}
 			part={item.data.role}
 			play={item.data.play}
-			author={item.data.author}>
+			author={item.data.author}
+			credit={item.data.credit}
+			attribution={item.data.attribution}>
 			<Image
-				class="h-full max-h-[70dvh] w-full object-scale-down"
+				class="h-full max-h-[63dvh] w-full max-w-[90dvw] object-scale-down"
 				src={item.data.image}
 				alt={`${item.data.role} in ${item.data.play} by ${item.data.author}`}
 				widths={[362, 570, 691, 768, 1152]}
-				sizes={`(min-width: 1280px) 1152px, 90vw`}
+				sizes={`(min-width: 1280px) 1152px, 100vw`}
 				loading={"eager"}
 			/>
 		</Dialog>

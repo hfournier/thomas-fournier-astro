@@ -4,22 +4,28 @@ import { Icon } from "astro-icon/components"
 export interface Props extends Omit<astroHTML.JSX.DialogHTMLAttributes, "class"> {
 	part: string
 	play: string
-	author: string
+	author?: string
+	credit?: string
+	attribution?: string
 	class?: string
 }
-const { part, play, author, class: classList, ...attrs } = Astro.props
+const { part, play, author, credit, attribution, class: classList, ...attrs } = Astro.props
 ---
 
 <dialog
-	class:list={["bg-transparent backdrop:bg-neutral-950/70", classList]}
+	class:list={["scrollable max-h-[90dvh] bg-transparent backdrop:bg-neutral-950/70", classList]}
 	{...attrs}
 	aria-label={part}>
-	<div id="div_dialog" class="relative grid rounded-sm bg-neutral-50 p-4">
+	<div id="div_dialog" class="relative grid max-w-fit rounded-sm bg-neutral-50 p-4">
 		<slot />
-		<footer class="space-y-1.5 bg-neutral-50 pt-4">
-			<h3 class="font-josefin text-xl font-medium">{part}</h3>
-			<div class="">{play}</div>
-			<div class="text-sm">Written by {author}</div>
+		<footer class="flex">
+			<div class="w-0 min-w-0 grow space-y-1.5 bg-neutral-50 pt-4">
+				<h3 class="font-josefin text-xl font-medium">{part}</h3>
+				<div class="text-lg">{play}</div>
+				{author && <div class="text-sm">Written by {author}</div>}
+				{credit && <div class="text-sm">Photo credit: {credit}</div>}
+				{attribution && <p class="text-sm">{attribution}</p>}
+			</div>
 		</footer>
 		<button
 			id="dialogClose"

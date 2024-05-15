@@ -5,7 +5,9 @@ const gallerySchema = ({ image }: SchemaContext) =>
 		image: image(),
 		role: z.string(),
 		play: z.string(),
-		author: z.string(),
+		author: z.string().optional(),
+		credit: z.string().optional(),
+		attribution: z.string().optional(),
 		sortOrder: z.number()
 	})
 
