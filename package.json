@@ -12,6 +12,7 @@
 		"format:write": "prettier --write ."
 	},
 	"dependencies": {
+		"@astro-community/astro-embed-youtube": "^0.5.2",
 		"@astrojs/check": "^0.6.0",
 		"@astrojs/netlify": "^5.2.1",
 		"@astrojs/tailwind": "^5.1.0",

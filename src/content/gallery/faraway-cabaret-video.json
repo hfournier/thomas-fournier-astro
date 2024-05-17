@@ -1,0 +1,13 @@
+{
+	"image": "@assets/gallery/faraway-cabaret-video.jpg",
+	"role": "Performer",
+	"play": "Dream Weaver Cabaret - Faraway Theatre",
+	"author": "Faraway Theatre",
+	"sortOrder": 10.5,
+	"type": "video",
+	"video": {
+		"id": "Z1QhmebDqHw",
+		"autoplay": false,
+		"startTime": "2s"
+	}
+}

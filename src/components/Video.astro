@@ -1,0 +1,19 @@
+---
+import { YouTube } from "@astro-community/astro-embed-youtube"
+import type { CollectionEntry } from "astro:content"
+
+type Props = {
+	item: CollectionEntry<"gallery">
+}
+const { item } = Astro.props
+---
+
+<YouTube
+	id={item.data.video?.id!}
+	poster={item.data.image.src}
+	posterQuality="max"
+	params=`autoplay=1&start=2&enablejsapi=1&rel=0&origin=${Astro.url.origin}`
+	title={item.data.video?.title}
+	class="aspect-video w-dvw"
+	js-api
+/>

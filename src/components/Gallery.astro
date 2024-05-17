@@ -2,6 +2,7 @@
 import { getCollection } from "astro:content"
 import { Image } from "astro:assets"
 import Dialog from "./Dialog.astro"
+import Video from "./Video.astro"
 
 const gallery = await getCollection("gallery")
 ---
@@ -26,21 +27,18 @@ const gallery = await getCollection("gallery")
 </div>
 {
 	gallery.map((item) => (
-		<Dialog
-			id={`dlg_${item.id}`}
-			part={item.data.role}
-			play={item.data.play}
-			author={item.data.author}
-			credit={item.data.credit}
-			attribution={item.data.attribution}>
-			<Image
-				class="h-full max-h-[63dvh] w-full max-w-[90dvw] object-scale-down"
-				src={item.data.image}
-				alt={`${item.data.role} in ${item.data.play} by ${item.data.author}`}
-				widths={[362, 570, 691, 768, 1152]}
-				sizes={`(min-width: 1280px) 1152px, 100vw`}
-				loading={"eager"}
-			/>
+		<Dialog id={`dlg_${item.id}`} item={item}>
+			{item.data.type === "video" && <Video item={item} />}
+			{item.data.type !== "video" && (
+				<Image
+					class="h-full max-h-[63dvh] w-full max-w-[90dvw] object-scale-down"
+					src={item.data.image}
+					alt={`${item.data.role} in ${item.data.play} by ${item.data.author}`}
+					widths={[362, 570, 691, 768, 1152]}
+					sizes={`(min-width: 1280px) 1152px, 100vw`}
+					loading={"eager"}
+				/>
+			)}
 		</Dialog>
 	))
 }

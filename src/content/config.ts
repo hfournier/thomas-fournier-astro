@@ -8,7 +8,16 @@ const gallerySchema = ({ image }: SchemaContext) =>
 		author: z.string().optional(),
 		credit: z.string().optional(),
 		attribution: z.string().optional(),
-		sortOrder: z.number()
+		sortOrder: z.number(),
+		type: z.string().default("image").optional(),
+		video: z
+			.object({
+				id: z.string(),
+				title: z.string().optional(),
+				startTime: z.string().optional(),
+				autoplay: z.boolean().default(false).optional()
+			})
+			.optional()
 	})
 
 const galleryCollection = defineCollection({

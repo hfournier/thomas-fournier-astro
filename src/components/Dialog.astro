@@ -1,15 +1,12 @@
 ---
 import { Icon } from "astro-icon/components"
+import type { CollectionEntry } from "astro:content"
 
 export interface Props extends Omit<astroHTML.JSX.DialogHTMLAttributes, "class"> {
-	part: string
-	play: string
-	author?: string
-	credit?: string
-	attribution?: string
+	item: CollectionEntry<"gallery">
 	class?: string
 }
-const { part, play, author, credit, attribution, class: classList, ...attrs } = Astro.props
+const { part, item, class: classList, ...attrs } = Astro.props
 ---
 
 <dialog
@@ -21,10 +18,10 @@ const { part, play, author, credit, attribution, class: classList, ...attrs } = 
 		<footer class="flex">
 			<div class="w-0 min-w-0 grow space-y-1.5 bg-neutral-50 pt-4">
 				<h3 class="font-josefin text-xl font-medium">{part}</h3>
-				<div class="text-base font-medium">{play}</div>
-				{author && <div class="text-sm">Written by {author}</div>}
-				{credit && <div class="text-sm">Photo credit: {credit}</div>}
-				{attribution && <p class="text-sm">{attribution}</p>}
+				<div class="text-base font-medium">{item.data.play}</div>
+				{item.data.author && <div class="text-sm">Written by {item.data.author}</div>}
+				{item.data.credit && <div class="text-sm">Photo credit: {item.data.credit}</div>}
+				{item.data.attribution && <p class="text-sm">{item.data.attribution}</p>}
 			</div>
 		</footer>
 		<button
@@ -86,6 +83,8 @@ const { part, play, author, credit, attribution, class: classList, ...attrs } = 
 	const dialogs = document.getElementsByTagName("dialog")
 	if (dialogs && dialogs.length > 0) {
 		for (const dialog of dialogs) {
+			// @ts-ignore
+			let player
 			dialog.addEventListener("click", () => {
 				dialog.close()
 			})
@@ -98,6 +97,46 @@ const { part, play, author, credit, attribution, class: classList, ...attrs } = 
 			dialogClose!.addEventListener("click", () => {
 				dialog.close()
 			})
+
+			dialog.addEventListener("close", async () => {
+				const video = dialog.querySelector("lite-youtube")
+				if (video) {
+					// @ts-ignore
+					if (!player) {
+						// @ts-ignore
+						player = await video.getYTPlayer()
+					}
+					if (player) {
+						const playerState = player.getPlayerState()
+						// if player is playing(1) or buffering(3), pause
+						if (playerState === 1 || playerState === 3) {
+							player?.pauseVideo()
+						}
+					}
+				}
+			})
+
+			// dialog has no open event, so we need to use MutationObserver
+			const observer = new MutationObserver(async (mutations) => {
+				if (mutations[0].attributeName === "open" && dialog.open) {
+					const video = dialog.querySelector("lite-youtube")
+					if (video) {
+						// @ts-ignore
+						if (!player) {
+							// @ts-ignore
+							player = await video.getYTPlayer()
+						}
+						if (player) {
+							const playerState = player.getPlayerState()
+							// if player was paused(2), play
+							if (playerState === 2) {
+								player?.playVideo()
+							}
+						}
+					}
+				}
+			})
+			observer.observe(dialog, { attributes: true, attributeFilter: ["open"] })
 		}
 	}
 </script>
