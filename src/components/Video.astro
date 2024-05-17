@@ -12,7 +12,7 @@ const { item } = Astro.props
 	id={item.data.video?.id!}
 	poster={item.data.image.src}
 	posterQuality="max"
-	params=`autoplay=1&start=2&enablejsapi=1&rel=0&origin=${Astro.url.origin}`
+	params=`autoplay=${item.data.video?.autoplay ? "1" : "0"}&start=2&enablejsapi=1&rel=0&origin=${Astro.url.origin}`
 	title={item.data.video?.title}
 	class="aspect-video w-dvw"
 	js-api
