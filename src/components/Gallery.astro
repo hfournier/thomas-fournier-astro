@@ -36,7 +36,6 @@ const gallery = await getCollection("gallery")
 					alt={`${item.data.role} in ${item.data.play} by ${item.data.author}`}
 					widths={[362, 570, 691, 768, 1152]}
 					sizes={`(min-width: 1280px) 1152px, 100vw`}
-					loading={"eager"}
 				/>
 			)}
 		</Dialog>
@@ -51,6 +50,14 @@ const gallery = await getCollection("gallery")
 				const btn = e.currentTarget as HTMLButtonElement
 				const dialog = document.getElementById(btn.dataset.dialog as string) as HTMLDialogElement
 				dialog!.showModal()
+			})
+			button.addEventListener("pointerenter", (e: Event) => {
+				const btn = e.currentTarget as HTMLButtonElement
+				const dialog = document.getElementById(btn.dataset.dialog as string) as HTMLDialogElement
+				const img = dialog.querySelector("img") as HTMLImageElement
+				if (img && !img.complete) {
+					img.removeAttribute("loading")
+				}
 			})
 		}
 	}

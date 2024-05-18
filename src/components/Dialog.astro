@@ -101,16 +101,20 @@ const { part, item, class: classList, ...attrs } = Astro.props
 			dialog.addEventListener("close", async () => {
 				const video = dialog.querySelector("lite-youtube")
 				if (video) {
-					// @ts-ignore
-					if (!player) {
+					// check if inner script tags exist (player loaded), before calling getYTPlayer()
+					const activated = video.classList.contains("lyt-activated")
+					if (activated) {
 						// @ts-ignore
-						player = await video.getYTPlayer()
-					}
-					if (player) {
-						const playerState = player.getPlayerState()
-						// if player is playing(1) or buffering(3), pause
-						if (playerState === 1 || playerState === 3) {
-							player?.pauseVideo()
+						if (!player) {
+							// @ts-ignore
+							player = await video.getYTPlayer()
+						}
+						if (player) {
+							const playerState = player.getPlayerState()
+							// if player is playing(1) or buffering(3), pause
+							if (playerState === 1 || playerState === 3) {
+								player?.pauseVideo()
+							}
 						}
 					}
 				}
@@ -121,16 +125,20 @@ const { part, item, class: classList, ...attrs } = Astro.props
 				if (mutations[0].attributeName === "open" && dialog.open) {
 					const video = dialog.querySelector("lite-youtube")
 					if (video) {
-						// @ts-ignore
-						if (!player) {
+						// check if inner script tags exist (player loaded), before calling getYTPlayer()
+						const activated = video.classList.contains("lyt-activated")
+						if (activated) {
 							// @ts-ignore
-							player = await video.getYTPlayer()
-						}
-						if (player) {
-							const playerState = player.getPlayerState()
-							// if player was paused(2), play
-							if (playerState === 2) {
-								player?.playVideo()
+							if (!player) {
+								// @ts-ignore
+								player = await video.getYTPlayer()
+							}
+							if (player) {
+								const playerState = player.getPlayerState()
+								// if player was paused(2), play
+								if (playerState === 2) {
+									player?.playVideo()
+								}
 							}
 						}
 					}
