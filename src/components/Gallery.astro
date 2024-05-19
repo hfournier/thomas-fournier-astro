@@ -53,8 +53,7 @@ const gallery = await getCollection("gallery")
 			})
 			button.addEventListener("pointerenter", (e: Event) => {
 				const btn = e.currentTarget as HTMLButtonElement
-				const dialog = document.getElementById(btn.dataset.dialog as string) as HTMLDialogElement
-				const img = dialog.querySelector("img") as HTMLImageElement
+				const img = document.querySelector(`#${btn.dataset.dialog} img`) as HTMLImageElement
 				if (img && !img.complete) {
 					img.removeAttribute("loading")
 				}

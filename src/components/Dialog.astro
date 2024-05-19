@@ -6,18 +6,18 @@ export interface Props extends Omit<astroHTML.JSX.DialogHTMLAttributes, "class">
 	item: CollectionEntry<"gallery">
 	class?: string
 }
-const { part, item, class: classList, ...attrs } = Astro.props
+const { item, class: classList, ...attrs } = Astro.props
 ---
 
 <dialog
 	class:list={["scrollable max-h-[90dvh] bg-transparent backdrop:bg-neutral-950/70", classList]}
 	{...attrs}
-	aria-label={part}>
+	aria-label={item.data.role}>
 	<div id="div_dialog" class="relative grid max-w-fit rounded-sm bg-neutral-50 p-4">
 		<slot />
 		<footer class="flex">
 			<div class="w-0 min-w-0 grow space-y-1.5 bg-neutral-50 pt-4">
-				<h3 class="font-josefin text-xl font-medium">{part}</h3>
+				<h3 class="font-josefin text-xl font-medium">{item.data.role}</h3>
 				<div class="text-base font-medium">{item.data.play}</div>
 				{item.data.author && <div class="text-sm">Written by {item.data.author}</div>}
 				{item.data.credit && <div class="text-sm">Photo credit: {item.data.credit}</div>}
