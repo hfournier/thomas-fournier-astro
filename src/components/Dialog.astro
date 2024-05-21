@@ -3,7 +3,9 @@ import { Icon } from "astro-icon/components"
 import type { CollectionEntry } from "astro:content"
 
 export interface Props extends Omit<astroHTML.JSX.DialogHTMLAttributes, "class"> {
-	item: CollectionEntry<"gallery">
+	item: CollectionEntry<"gallery"> & {
+		lowresSrc: string
+	}
 	class?: string
 }
 const { item, class: classList, ...attrs } = Astro.props
@@ -14,7 +16,12 @@ const { item, class: classList, ...attrs } = Astro.props
 	{...attrs}
 	aria-label={item.data.role}>
 	<div id="div_dialog" class="relative grid max-w-fit rounded-sm bg-neutral-50 p-4">
-		<slot />
+		<!-- Image here -->
+		<div
+			class="h-full max-h-[63dvh] w-full max-w-[90dvw] bg-neutral-50 object-scale-down"
+			style={`background-image: url(${item.lowresSrc}); background-repeat: no-repeat; background-size: cover`}>
+			<slot />
+		</div>
 		<footer class="flex">
 			<div class="w-0 min-w-0 grow space-y-1.5 bg-neutral-50 pt-4">
 				<h3 class="font-josefin text-xl font-medium">{item.data.role}</h3>

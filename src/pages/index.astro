@@ -1,9 +1,29 @@
 ---
+import { getCollection } from "astro:content"
+import { getImage } from "astro:assets"
+
 import BaseLayout from "@layouts/BaseLayout.astro"
 import Contact from "@components/Contact.astro"
 import Gallery from "@components/Gallery.astro"
 import Hero from "@components/Hero.astro"
 import About from "@components/About.astro"
+import GalleryLinks from "@components/GalleryLinks.astro"
+
+const gallery = await getCollection("gallery")
+const galleryLR = await Promise.all(
+	gallery.map(async (item) => {
+		return {
+			...item,
+			lowresSrc: (
+				await getImage({
+					src: item.data.image,
+					width: 10,
+					quality: 10
+				})
+			).src
+		}
+	})
+)
 ---
 
 <BaseLayout>
@@ -15,8 +35,11 @@ import About from "@components/About.astro"
 		class="grid w-full snap-start place-items-center bg-neutral-700 py-24 lg:py-32">
 		<About />
 	</section>
+	<Fragment slot="head">
+		<GalleryLinks gallery={galleryLR} />
+	</Fragment>
 	<section id="gallery" class="w-full snap-start bg-neutral-300">
-		<Gallery />
+		<Gallery gallery={galleryLR} />
 	</section>
 	<section
 		id="contact"

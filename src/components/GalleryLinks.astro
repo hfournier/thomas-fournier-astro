@@ -1,0 +1,12 @@
+---
+import { type CollectionEntry } from "astro:content"
+
+export type Props = {
+	gallery: (CollectionEntry<"gallery"> & {
+		lowresSrc: string
+	})[]
+}
+const { gallery } = Astro.props
+---
+
+{gallery.map((item) => <link rel="preload" href={item.lowresSrc} as="image" />)}

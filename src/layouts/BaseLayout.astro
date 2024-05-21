@@ -24,6 +24,7 @@ const siteName = "Thomas Fournier"
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
+		<slot name="head" />
 		<title>{title}</title>
 		<meta name="description" content={description} />
 		<meta property="og:title" content={title} />

@@ -1,10 +1,15 @@
 ---
-import { getCollection } from "astro:content"
+import { type CollectionEntry } from "astro:content"
 import { Image } from "astro:assets"
 import Dialog from "./Dialog.astro"
 import Video from "./Video.astro"
 
-const gallery = await getCollection("gallery")
+export type Props = {
+	gallery: (CollectionEntry<"gallery"> & {
+		lowresSrc: string
+	})[]
+}
+const { gallery } = Astro.props
 ---
 
 <div
@@ -13,9 +18,13 @@ const gallery = await getCollection("gallery")
 		gallery
 			.sort((a, b) => a.data.sortOrder - b.data.sortOrder)
 			.map((item) => (
-				<button class="py-2 md:py-3 lg:py-4" type="button" data-dialog={`dlg_${item.id}`}>
+				<button
+					class="my-2 rounded-md md:my-3 md:rounded-lg lg:my-4 lg:rounded-xl"
+					type="button"
+					data-dialog={`dlg_${item.id}`}
+					style={`background-image: url(${item.lowresSrc}); background-repeat: no-repeat; background-size: cover`}>
 					<Image
-						class="rounded-md md:rounded-lg lg:rounded-xl"
+						class="rounded-md opacity-0 transition-opacity duration-300 ease-in-out data-[loaded='true']:opacity-100 md:rounded-lg lg:rounded-xl"
 						src={item.data.image}
 						alt={`${item.data.role} in ${item.data.play} by ${item.data.author}`}
 						widths={[280, 360, 384, 476, 607]}
@@ -31,7 +40,7 @@ const gallery = await getCollection("gallery")
 			{item.data.type === "video" && <Video item={item} />}
 			{item.data.type !== "video" && (
 				<Image
-					class="h-full max-h-[63dvh] w-full max-w-[90dvw] object-scale-down"
+					class="h-full max-h-[63dvh] w-full max-w-[90dvw] object-scale-down opacity-0 transition-opacity duration-300 ease-in-out data-[loaded='true']:opacity-100"
 					src={item.data.image}
 					alt={`${item.data.role} in ${item.data.play} by ${item.data.author}`}
 					widths={[362, 570, 691, 768, 1152]}
@@ -58,6 +67,34 @@ const gallery = await getCollection("gallery")
 					img.removeAttribute("loading")
 				}
 			})
+			const img = button.querySelector("img")
+			if (img) {
+				const loaded = () => {
+					img.setAttribute("data-loaded", "true")
+				}
+				if (img.complete) {
+					loaded()
+				} else {
+					img.addEventListener("load", loaded)
+				}
+			}
+		}
+	}
+
+	const dialogs = document.getElementsByTagName("dialog")
+	if (dialogs && dialogs.length > 0) {
+		for (const dialog of dialogs) {
+			const img = dialog.querySelector("img")
+			if (img) {
+				const loaded = () => {
+					img.setAttribute("data-loaded", "true")
+				}
+				if (img.complete) {
+					loaded()
+				} else {
+					img.addEventListener("load", loaded)
+				}
+			}
 		}
 	}
 </script>
