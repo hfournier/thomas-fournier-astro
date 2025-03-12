@@ -2,8 +2,11 @@
 import { Image } from "astro:assets"
 
 import headshot_1 from "@assets/hero/headshot-1.jpg"
+import headshot_p_1 from "@assets/hero/headshot-p-1.jpg"
 import headshot_2 from "@assets/hero/headshot-2.jpg"
+import headshot_p_2 from "@assets/hero/headshot-p-2.jpg"
 import headshot_3 from "@assets/hero/headshot-3.jpg"
+import headshot_p_3 from "@assets/hero/headshot-p-3.jpg"
 ---
 
 <section class="w-full snap-start">
@@ -11,7 +14,7 @@ import headshot_3 from "@assets/hero/headshot-3.jpg"
 		class="grid grid-cols-1 grid-rows-1 overflow-x-hidden hover:[&_*]:[animation-play-state:_paused]"
 	>
 		<Image
-			class="animate-slide1 col-start-1 row-start-1"
+			class="animate-slide1 col-start-1 row-start-1 hidden sm:block"
 			src={headshot_1}
 			alt="Thomas Fournier headshot #1"
 			loading="eager"
@@ -20,7 +23,16 @@ import headshot_3 from "@assets/hero/headshot-3.jpg"
 			layout="full-width"
 		/>
 		<Image
-			class="animate-slide2 col-start-1 row-start-1"
+			class="animate-slide1 col-start-1 row-start-1 sm:hidden"
+			src={headshot_p_1}
+			alt="Thomas Fournier headshot #1"
+			loading="eager"
+			decoding="sync"
+			fetchpriority="high"
+			layout="full-width"
+		/>
+		<Image
+			class="animate-slide2 col-start-1 row-start-1 hidden sm:block"
 			src={headshot_2}
 			alt="Thomas Fournier headshot #2"
 			loading="eager"
@@ -28,8 +40,24 @@ import headshot_3 from "@assets/hero/headshot-3.jpg"
 			layout="full-width"
 		/>
 		<Image
-			class="animate-slide3 col-start-1 row-start-1"
+			class="animate-slide2 col-start-1 row-start-1 sm:hidden"
+			src={headshot_p_2}
+			alt="Thomas Fournier headshot #2"
+			loading="eager"
+			fetchpriority="low"
+			layout="full-width"
+		/>
+		<Image
+			class="animate-slide3 col-start-1 row-start-1 hidden sm:block"
 			src={headshot_3}
+			alt="Thomas Fournier headshot #3"
+			loading="eager"
+			fetchpriority="low"
+			layout="full-width"
+		/>
+		<Image
+			class="animate-slide3 col-start-1 row-start-1 sm:hidden"
+			src={headshot_p_3}
 			alt="Thomas Fournier headshot #3"
 			loading="eager"
 			fetchpriority="low"

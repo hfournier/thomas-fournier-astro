@@ -16,6 +16,8 @@ const { item, class: classList, ...attrs } = Astro.props
 		"scrollable m-auto max-h-[90dvh] bg-transparent backdrop:bg-neutral-950/70",
 		classList
 	]}
+	id={`dlg_${item.id}`}
+	popover
 	{...attrs}
 	aria-label={item.data.role}
 >
@@ -37,8 +39,9 @@ const { item, class: classList, ...attrs } = Astro.props
 			</div>
 		</footer>
 		<button
-			id="dialogClose"
 			class="absolute -top-3 right-1 col-start-1 row-start-1 rounded-full border-4 border-neutral-800 bg-neutral-50/75 p-2 text-neutral-800 outline-hidden hover:bg-neutral-50 hover:text-neutral-700 focus-visible:ring-2 focus-visible:ring-sky-600 focus-visible:ring-offset-4 focus-visible:ring-offset-neutral-100"
+			popovertarget={`dlg_${item.id}`}
+			popovertargetaction="hide"
 		>
 			<span class="sr-only">Close</span>
 			<Icon class="size-6" aria-hidden="true" name="mdi:close" />
@@ -51,7 +54,7 @@ const { item, class: classList, ...attrs } = Astro.props
 		--opening-duration: 0.4s;
 	}
 
-	dialog[open] {
+	dialog:popover-open {
 		opacity: 1;
 		transform: scale(1);
 	}
@@ -67,7 +70,7 @@ const { item, class: classList, ...attrs } = Astro.props
 	}
 
 	@starting-style {
-		dialog[open] {
+		dialog:popover-open {
 			opacity: 0;
 			transform: scale(0);
 		}
@@ -81,12 +84,12 @@ const { item, class: classList, ...attrs } = Astro.props
 			display var(--opening-duration) ease-out allow-discrete;
 	}
 
-	dialog[open]::backdrop {
+	dialog:popover-open::backdrop {
 		opacity: 1;
 	}
 
 	@starting-style {
-		dialog[open]::backdrop {
+		dialog:popover-open::backdrop {
 			opacity: 0;
 		}
 	}
@@ -98,20 +101,8 @@ const { item, class: classList, ...attrs } = Astro.props
 		for (const dialog of dialogs) {
 			// @ts-ignore
 			let player
-			dialog.addEventListener("click", () => {
-				dialog.close()
-			})
 
-			dialog.firstElementChild?.addEventListener("click", (e) => {
-				e.stopPropagation()
-			})
-
-			const dialogClose = dialog.querySelector("#dialogClose")
-			dialogClose!.addEventListener("click", () => {
-				dialog.close()
-			})
-
-			dialog.addEventListener("close", async () => {
+			dialog.addEventListener("beforetoggle", async (event) => {
 				const video = dialog.querySelector("lite-youtube")
 				if (video) {
 					// check if inner script tags exist (player loaded), before calling getYTPlayer()
@@ -124,40 +115,21 @@ const { item, class: classList, ...attrs } = Astro.props
 						}
 						if (player) {
 							const playerState = player.getPlayerState()
-							// if player is playing(1) or buffering(3), pause
-							if (playerState === 1 || playerState === 3) {
-								player?.pauseVideo()
+							// if player was paused(2), play
+							if (playerState === 2) {
+								player?.playVideo()
 							}
-						}
-					}
-				}
-			})
-
-			// dialog has no open event, so we need to use MutationObserver
-			const observer = new MutationObserver(async (mutations) => {
-				if (mutations[0].attributeName === "open" && dialog.open) {
-					const video = dialog.querySelector("lite-youtube")
-					if (video) {
-						// check if inner script tags exist (player loaded), before calling getYTPlayer()
-						const activated = video.classList.contains("lyt-activated")
-						if (activated) {
-							// @ts-ignore
-							if (!player) {
-								// @ts-ignore
-								player = await video.getYTPlayer()
-							}
-							if (player) {
-								const playerState = player.getPlayerState()
-								// if player was paused(2), play
-								if (playerState === 2) {
-									player?.playVideo()
+							if ((event as ToggleEvent).newState === "open") {
+							} else {
+								// if player is playing(1) or buffering(3), pause
+								if (playerState === 1 || playerState === 3) {
+									player?.pauseVideo()
 								}
 							}
 						}
 					}
 				}
 			})
-			observer.observe(dialog, { attributes: true, attributeFilter: ["open"] })
 		}
 	}
 </script>
