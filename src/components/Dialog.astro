@@ -115,11 +115,11 @@ const { item, class: classList, ...attrs } = Astro.props
 						}
 						if (player) {
 							const playerState = player.getPlayerState()
-							// if player was paused(2), play
-							if (playerState === 2) {
-								player?.playVideo()
-							}
 							if ((event as ToggleEvent).newState === "open") {
+								// if player was paused(2), play
+								if (playerState === 2) {
+									player?.playVideo()
+								}
 							} else {
 								// if player is playing(1) or buffering(3), pause
 								if (playerState === 1 || playerState === 3) {
