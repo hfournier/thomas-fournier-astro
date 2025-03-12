@@ -102,9 +102,9 @@ const { item, class: classList, ...attrs } = Astro.props
 			// @ts-ignore
 			let player
 
-			dialog.addEventListener("beforetoggle", async (event) => {
-				const video = dialog.querySelector("lite-youtube")
-				if (video) {
+			const video = dialog.querySelector("lite-youtube")
+			if (video) {
+				dialog.addEventListener("beforetoggle", async (event) => {
 					// check if inner script tags exist (player loaded), before calling getYTPlayer()
 					const activated = video.classList.contains("lyt-activated")
 					if (activated) {
@@ -128,8 +128,8 @@ const { item, class: classList, ...attrs } = Astro.props
 							}
 						}
 					}
-				}
-			})
+				})
+			}
 		}
 	}
 </script>
