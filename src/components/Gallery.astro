@@ -12,44 +12,48 @@ export type Props = {
 const { gallery } = Astro.props
 ---
 
-<div
-	class="columns-1 gap-4 bg-neutral-800 p-4 py-2 sm:columns-2 md:gap-6 md:px-6 md:py-3 lg:columns-3 lg:gap-8 lg:px-8 lg:py-4 xl:columns-4">
+<section id="gallery" class="w-full snap-start bg-neutral-300">
+	<div
+		class="columns-1 gap-4 bg-neutral-800 p-4 py-2 sm:columns-2 md:gap-6 md:px-6 md:py-3 lg:columns-3 lg:gap-8 lg:px-8 lg:py-4 xl:columns-4"
+	>
+		{
+			gallery
+				.sort((a, b) => a.data.sortOrder - b.data.sortOrder)
+				.map((item) => (
+					<button
+						class="my-2 rounded-md md:my-3 md:rounded-lg lg:my-4 lg:rounded-xl"
+						type="button"
+						data-dialog={`dlg_${item.id}`}
+						style={`background-image: url(${item.lowresSrc}); background-repeat: no-repeat; background-size: cover`}
+					>
+						<Image
+							class="rounded-md opacity-0 transition-opacity duration-300 ease-in-out data-[loaded='true']:opacity-100 md:rounded-lg lg:rounded-xl"
+							src={item.data.image}
+							alt={`${item.data.role} in ${item.data.play} by ${item.data.author}`}
+							widths={[280, 360, 384, 476, 607]}
+							sizes={`(min-width: 1280px) calc((1280px - (5 * 32px)) / 4), (min-width: 1024px) calc((100dvw - (4 * 32px)) / 3), (min-width: 768px) calc((100dvw - (3 * 24px)) / 2), (min-width: 640px) calc((100dvw - (3 * 16px)) / 2), calc(100dvw - (2 * 16px))`}
+						/>
+					</button>
+				))
+		}
+	</div>
 	{
-		gallery
-			.sort((a, b) => a.data.sortOrder - b.data.sortOrder)
-			.map((item) => (
-				<button
-					class="my-2 rounded-md md:my-3 md:rounded-lg lg:my-4 lg:rounded-xl"
-					type="button"
-					data-dialog={`dlg_${item.id}`}
-					style={`background-image: url(${item.lowresSrc}); background-repeat: no-repeat; background-size: cover`}>
+		gallery.map((item) => (
+			<Dialog id={`dlg_${item.id}`} item={item}>
+				{item.data.type === "video" && <Video item={item} />}
+				{item.data.type !== "video" && (
 					<Image
-						class="rounded-md opacity-0 transition-opacity duration-300 ease-in-out data-[loaded='true']:opacity-100 md:rounded-lg lg:rounded-xl"
+						class="h-full max-h-[63dvh] w-full max-w-[90dvw] object-scale-down opacity-0 transition-opacity duration-300 ease-in-out data-[loaded='true']:opacity-100"
 						src={item.data.image}
 						alt={`${item.data.role} in ${item.data.play} by ${item.data.author}`}
-						widths={[280, 360, 384, 476, 607]}
-						sizes={`(min-width: 1280px) calc((1280px - (5 * 32px)) / 4), (min-width: 1024px) calc((100dvw - (4 * 32px)) / 3), (min-width: 768px) calc((100dvw - (3 * 24px)) / 2), (min-width: 640px) calc((100dvw - (3 * 16px)) / 2), calc(100dvw - (2 * 16px))`}
+						widths={[362, 570, 691, 768, 1152]}
+						sizes={`(min-width: 1280px) 1152px, 100vw`}
 					/>
-				</button>
-			))
+				)}
+			</Dialog>
+		))
 	}
-</div>
-{
-	gallery.map((item) => (
-		<Dialog id={`dlg_${item.id}`} item={item}>
-			{item.data.type === "video" && <Video item={item} />}
-			{item.data.type !== "video" && (
-				<Image
-					class="h-full max-h-[63dvh] w-full max-w-[90dvw] object-scale-down opacity-0 transition-opacity duration-300 ease-in-out data-[loaded='true']:opacity-100"
-					src={item.data.image}
-					alt={`${item.data.role} in ${item.data.play} by ${item.data.author}`}
-					widths={[362, 570, 691, 768, 1152]}
-					sizes={`(min-width: 1280px) 1152px, 100vw`}
-				/>
-			)}
-		</Dialog>
-	))
-}
+</section>
 
 <script>
 	const buttons = document.querySelectorAll("button[data-dialog]")
@@ -63,6 +67,7 @@ const { gallery } = Astro.props
 			button.addEventListener("pointerenter", (e: Event) => {
 				const btn = e.currentTarget as HTMLButtonElement
 				const img = document.querySelector(`#${btn.dataset.dialog} img`) as HTMLImageElement
+				// if image is not loaded yet, remove loading=lazy attribute so that it will load now
 				if (img && !img.complete) {
 					img.removeAttribute("loading")
 				}

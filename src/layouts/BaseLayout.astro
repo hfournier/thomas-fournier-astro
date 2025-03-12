@@ -1,7 +1,6 @@
 ---
 import "../styles/fonts.css"
-import "../styles/tailwind.css"
-import Header from "@components/Header.astro"
+import "../styles/global.css"
 import Footer from "@components/Footer.astro"
 import thomas_fournier from "@assets/thomas-fournier.jpg"
 import { getImage } from "astro:assets"
@@ -41,8 +40,7 @@ const siteName = "Thomas Fournier"
 		<meta property="profile:first_name" content={firstName} />
 		<meta property="profile:last_name" content={lastName} />
 	</head>
-	<body class="mx-auto max-w-7xl bg-neutral-900 font-montserrat text-neutral-100">
-		<Header />
+	<body class="font-montserrat mx-auto max-w-7xl bg-neutral-900 text-neutral-100">
 		<main class="snap-y snap-mandatory">
 			<slot />
 		</main>

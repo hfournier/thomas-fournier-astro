@@ -1,0 +1,49 @@
+<svg
+			viewBox="0 0 323 511"
+			version="1.1"
+			aria-label="Noble Caplan Abrams logo"
+			><defs
+				><filter id="dropshadow" height="130%"
+					><feGaussianBlur in="SourceAlpha" stdDeviation="3"></feGaussianBlur><feOffset
+						dx="3"
+						dy="8"
+						result="offsetblur"></feOffset><feComponentTransfer
+						><feFuncA type="linear" slope=".5"></feFuncA></feComponentTransfer
+					><feMerge
+						><feMergeNode></feMergeNode><feMergeNode in="SourceGraphic"></feMergeNode></feMerge
+					></filter
+				><polygon
+					id="path-1"
+					points="0 0.521532773 180.103151 0.521532773 180.103151 243.749454 0 243.749454"
+				></polygon></defs
+			><g
+				filter="url(#dropshadow)"
+				id="Design-V1"
+				stroke="none"
+				stroke-width="1"
+				fill="none"
+				fill-rule="evenodd"
+				><g id="Talent-Submissions" transform="translate(-127.000000, -291.000000)"
+					><g id="logo" transform="translate(127.000000, 291.000000)"
+						><polygon
+							id="Fill-1"
+							fill="#FF6600"
+							points="245.052678 244.581816 230.227665 244.581816 230.156193 244.581816 151.812886 490.479292 169.456933 490.479292 237.638797 268.69583 305.822035 490.479292 323.467457 490.479292 245.122776 244.581816"
+						></polygon><g id="Group-7" stroke-width="1" transform="translate(0.000000, -0.521258)"
+							><path
+								d="M230.234537,327.41833 C213.049563,344.476798 190.48492,354.885448 165.376137,354.885448 C111.99592,354.885448 68.7235417,307.8581 68.7235417,249.845831 C68.7235417,191.834938 111.99592,144.80759 165.376137,144.80759 C190.150925,144.80759 212.74718,154.937044 229.852435,171.592534 L243.48441,158.649114 C222.874261,137.884078 195.24058,125.184095 164.868959,125.184095 C101.111508,125.184095 49.4273843,181.148467 49.4273843,250.185543 C49.4273843,319.221243 101.111508,375.185616 164.868959,375.185616 C195.406891,375.185616 222.867389,362.343971 243.513274,341.379509 L230.234537,327.41833 Z"
+								id="Fill-2"
+								fill="#F9072A"></path><g id="Group-6"
+								><mask id="mask-2" fill="white"><use xlink:href="#path-1"></use></mask><g
+									id="Clip-5"></g><polygon
+									id="Fill-4"
+									fill="#660066"
+									mask="url(#mask-2)"
+									points="-0.000274893617 0.521532773 20.3116145 0.521532773 161.821351 221.390387 161.821351 0.521532773 180.103151 0.521532773 180.103151 243.071407 155.728334 243.071407 18.9577634 31.6869669 18.9577634 243.749454 -0.000274893617 243.749454"
+								></polygon></g
+							></g
+						></g
+					></g
+				></g
+			></svg
+		>

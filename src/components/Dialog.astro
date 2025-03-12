@@ -1,25 +1,30 @@
 ---
 import { Icon } from "astro-icon/components"
+import type { HTMLAttributes } from "astro/types"
 import type { CollectionEntry } from "astro:content"
 
-export interface Props extends Omit<astroHTML.JSX.DialogHTMLAttributes, "class"> {
+export interface Props extends HTMLAttributes<"dialog"> {
 	item: CollectionEntry<"gallery"> & {
 		lowresSrc: string
 	}
-	class?: string
 }
 const { item, class: classList, ...attrs } = Astro.props
 ---
 
 <dialog
-	class:list={["scrollable max-h-[90dvh] bg-transparent backdrop:bg-neutral-950/70", classList]}
+	class:list={[
+		"scrollable m-auto max-h-[90dvh] bg-transparent backdrop:bg-neutral-950/70",
+		classList
+	]}
 	{...attrs}
-	aria-label={item.data.role}>
-	<div id="div_dialog" class="relative grid max-w-fit rounded-sm bg-neutral-50 p-4">
+	aria-label={item.data.role}
+>
+	<div id="div_dialog" class="relative grid max-w-fit rounded-xs bg-neutral-50 p-4">
 		<!-- Image here -->
 		<div
 			class="h-full max-h-[63dvh] w-full max-w-[90dvw] bg-neutral-50 object-scale-down"
-			style={`background-image: url(${item.lowresSrc}); background-repeat: no-repeat; background-size: cover`}>
+			style={`background-image: url(${item.lowresSrc}); background-repeat: no-repeat; background-size: cover`}
+		>
 			<slot />
 		</div>
 		<footer class="flex">
@@ -33,7 +38,8 @@ const { item, class: classList, ...attrs } = Astro.props
 		</footer>
 		<button
 			id="dialogClose"
-			class="absolute -top-3 right-1 col-start-1 row-start-1 rounded-full border-4 border-neutral-800 bg-neutral-50/75 p-2 text-neutral-800 outline-none hover:bg-neutral-50 hover:text-neutral-700 focus-visible:ring-2 focus-visible:ring-sky-600 focus-visible:ring-offset-4 focus-visible:ring-offset-neutral-100">
+			class="absolute -top-3 right-1 col-start-1 row-start-1 rounded-full border-4 border-neutral-800 bg-neutral-50/75 p-2 text-neutral-800 outline-hidden hover:bg-neutral-50 hover:text-neutral-700 focus-visible:ring-2 focus-visible:ring-sky-600 focus-visible:ring-offset-4 focus-visible:ring-offset-neutral-100"
+		>
 			<span class="sr-only">Close</span>
 			<Icon class="size-6" aria-hidden="true" name="mdi:close" />
 		</button>
