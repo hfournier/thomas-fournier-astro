@@ -3,9 +3,10 @@ import { YouTube } from "@astro-community/astro-embed-youtube"
 import type { CollectionEntry } from "astro:content"
 
 type Props = {
+	class?: string
 	item: CollectionEntry<"gallery">
 }
-const { item } = Astro.props
+const { class: classList, item } = Astro.props
 ---
 
 <YouTube
@@ -14,6 +15,6 @@ const { item } = Astro.props
 	posterQuality="max"
 	params=`autoplay=${item.data.video?.autoplay ? "1" : "0"}&start=2&enablejsapi=1&rel=0&origin=${Astro.url.origin}`
 	title={item.data.video?.title}
-	class="aspect-video w-dvw"
+	class:list={["aspect-video", classList]}
 	js-api
 />

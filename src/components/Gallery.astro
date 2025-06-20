@@ -31,8 +31,7 @@ const { gallery } = Astro.props
 							class="rounded-md opacity-0 transition-opacity duration-300 ease-in-out data-[loaded='true']:opacity-100 md:rounded-lg lg:rounded-xl"
 							src={item.data.image}
 							alt={`${item.data.role} in ${item.data.play} by ${item.data.author}`}
-							widths={[280, 360, 384, 476, 607]}
-							sizes={`(min-width: 1280px) calc((1280px - (5 * 32px)) / 4), (min-width: 1024px) calc((100dvw - (4 * 32px)) / 3), (min-width: 768px) calc((100dvw - (3 * 24px)) / 2), (min-width: 640px) calc((100dvw - (3 * 16px)) / 2), calc(100dvw - (2 * 16px))`}
+							layout="constrained"
 						/>
 					</button>
 				))
@@ -41,14 +40,13 @@ const { gallery } = Astro.props
 	{
 		gallery.map((item) => (
 			<Dialog {item}>
-				{item.data.type === "video" && <Video item={item} />}
+				{item.data.type === "video" && <Video class="h-full w-[calc(90dvw-2rem)]" item={item} />}
 				{item.data.type !== "video" && (
 					<Image
 						class="h-full max-h-[63dvh] w-full max-w-[90dvw] object-scale-down opacity-0 transition-opacity duration-300 ease-in-out data-[loaded='true']:opacity-100"
 						src={item.data.image}
 						alt={`${item.data.role} in ${item.data.play} by ${item.data.author}`}
-						widths={[362, 570, 691, 768, 1152]}
-						sizes={`(min-width: 1280px) 1152px, 100vw`}
+						layout="constrained"
 					/>
 				)}
 			</Dialog>
