@@ -28,10 +28,10 @@ const { gallery } = Astro.props
 						style={`background-image: url(${item.lowresSrc}); background-repeat: no-repeat; background-size: cover`}
 					>
 						<Image
-							class="rounded-md opacity-0 transition-opacity duration-300 ease-in-out data-[loaded='true']:opacity-100 md:rounded-lg lg:rounded-xl"
+							class="max-w-full rounded-md opacity-0 transition-opacity duration-300 ease-in-out data-[loaded='true']:opacity-100 md:rounded-lg lg:rounded-xl"
 							src={item.data.image}
 							alt={`${item.data.role} in ${item.data.play} by ${item.data.author}`}
-							layout="constrained"
+							sizes="(max-width: 639px) 100vw, (min-width: 640px) 50vw, (min-width: 1024px) 33vw, (min-width: 1280px) 425px"
 						/>
 					</button>
 				))
@@ -46,7 +46,6 @@ const { gallery } = Astro.props
 						class="h-full max-h-[63dvh] w-full max-w-[90dvw] object-scale-down opacity-0 transition-opacity duration-300 ease-in-out data-[loaded='true']:opacity-100"
 						src={item.data.image}
 						alt={`${item.data.role} in ${item.data.play} by ${item.data.author}`}
-						layout="constrained"
 					/>
 				)}
 			</Dialog>

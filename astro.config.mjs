@@ -13,6 +13,11 @@ export default defineConfig({
 		cacheOnDemandPages: true
 	}),
 
+	image: {
+		layout: "constrained",
+		breakpoints: [425, 640, 750, 828, 1080, 1280, 1668, 2048, 2560]
+	},
+
 	integrations: [
 		icon({
 			include: {
