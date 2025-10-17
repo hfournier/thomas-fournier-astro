@@ -7,14 +7,30 @@ type Props = {
 	item: CollectionEntry<"gallery">
 }
 const { class: classList, item } = Astro.props
+
+if (item.data.type !== "video") {
+	throw new Error(`Video is missing for item with id: ${item.id}`)
+}
+
+const video = item.data.video
+const poster = item.data.image?.src
+const title = video?.title ?? "Video"
+
+const params = new URLSearchParams({
+	autoplay: video?.autoplay ? "1" : "0",
+	start: video?.startTime ? video.startTime.toString() : "0",
+	enablejsapi: "1",
+	rel: "0",
+	origin: Astro.url.origin ?? ""
+}).toString()
 ---
 
 <YouTube
-	id={item.data.video?.id!}
-	poster={item.data.image.src}
+	id={video.id}
+	{poster}
 	posterQuality="max"
-	params=`autoplay=${item.data.video?.autoplay ? "1" : "0"}&start=2&enablejsapi=1&rel=0&origin=${Astro.url.origin}`
-	title={item.data.video?.title}
+	{params}
+	{title}
 	class:list={["aspect-video", classList]}
 	js-api
 />

@@ -14,6 +14,10 @@ const { item, class: classList, ...attrs } = Astro.props
 <dialog
 	class:list={[
 		"m-auto max-h-[90dvh] max-w-[90dvw] overflow-visible bg-transparent backdrop:bg-neutral-950/70",
+		"transition-[opacity,scale,display,overlay] transition-discrete duration-400 ease-out",
+		"scale-0 opacity-0 open:scale-100 open:opacity-100 starting:open:scale-0 starting:open:opacity-0",
+		"backdrop:opacity-0 backdrop:transition-[opacity,display,overlay] backdrop:duration-400 backdrop:ease-out",
+		"open:backdrop:opacity-100 starting:open:backdrop:opacity-0",
 		classList
 	]}
 	id={`dlg_${item.id}`}
@@ -48,52 +52,6 @@ const { item, class: classList, ...attrs } = Astro.props
 		</footer>
 	</div>
 </dialog>
-
-<style>
-	:root {
-		--opening-duration: 0.4s;
-	}
-
-	dialog:popover-open {
-		opacity: 1;
-		transform: scale(1);
-	}
-
-	dialog {
-		opacity: 0;
-		transform: scale(0);
-		transition:
-			opacity var(--opening-duration) ease-out,
-			transform var(--opening-duration) ease-out,
-			overlay var(--opening-duration) ease-out allow-discrete,
-			display var(--opening-duration) ease-out allow-discrete;
-	}
-
-	@starting-style {
-		dialog:popover-open {
-			opacity: 0;
-			transform: scale(0);
-		}
-	}
-
-	dialog::backdrop {
-		opacity: 0;
-		transition:
-			opacity var(--opening-duration) ease-out,
-			overlay var(--opening-duration) ease-out allow-discrete,
-			display var(--opening-duration) ease-out allow-discrete;
-	}
-
-	dialog:popover-open::backdrop {
-		opacity: 1;
-	}
-
-	@starting-style {
-		dialog:popover-open::backdrop {
-			opacity: 0;
-		}
-	}
-</style>
 
 <script>
 	const dialogs = document.getElementsByTagName("dialog")
