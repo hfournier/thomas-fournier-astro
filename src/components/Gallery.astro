@@ -40,10 +40,10 @@ const { gallery } = Astro.props
 	{
 		gallery.map((item) => (
 			<Dialog {item}>
-				{item.data.type === "video" && <Video class="h-full w-[calc(90dvw-2rem)]" item={item} />}
-				{item.data.type !== "video" && (
+				{item.data.type === "video" && <Video class="h-full w-[calc(90dvw-2rem)]" {item} />}
+				{item.data.type === "image" && (
 					<Image
-						class="h-full max-h-[63dvh] w-full max-w-[90dvw] object-scale-down opacity-0 transition-opacity duration-300 ease-in-out data-[loaded='true']:opacity-100"
+						class="max-h-[63dvh] w-full max-w-[90dvw] object-scale-down opacity-0 transition-opacity duration-300 ease-in-out data-[loaded='true']:opacity-100"
 						src={item.data.image}
 						alt={`${item.data.role} in ${item.data.play} by ${item.data.author}`}
 					/>
