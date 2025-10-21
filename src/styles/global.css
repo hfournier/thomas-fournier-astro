@@ -1,23 +1,27 @@
 @import "tailwindcss";
 
 @layer base {
+	.scrollable {
+		/* Prevent horizontal scroll bounce in iOS */
+		-webkit-overflow-scrolling: touch;
+		/* Enable momentum scrolling on iOS */
+		overscroll-behavior: contain;
+
+		/* Firefox scrollbar styling */
+		scrollbar-width: thin;
+		scrollbar-color: var(--color-neutral-600) transparent;
+	}
+
 	.scrollable::-webkit-scrollbar {
 		@apply h-2 w-2 bg-transparent;
 	}
 
 	.scrollable::-webkit-scrollbar-track {
-		@apply my-1 bg-transparent;
+		@apply my-1 rounded-full bg-transparent;
 	}
 
 	.scrollable::-webkit-scrollbar-thumb {
-		@apply rounded-full bg-neutral-500 hover:bg-neutral-400;
-	}
-
-	@supports (scrollbar-color: darkgray lightgray) {
-		.scrollable {
-			scrollbar-width: thin;
-			scrollbar-color: var(--color-neutral-600) transparent;
-		}
+		@apply rounded-full border-2 border-transparent bg-neutral-500 bg-clip-padding hover:bg-neutral-400;
 	}
 }
 
