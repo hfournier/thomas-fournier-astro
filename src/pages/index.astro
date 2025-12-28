@@ -8,6 +8,7 @@ import Gallery from "@components/Gallery.astro"
 import Hero from "@components/Hero.astro"
 import About from "@components/About.astro"
 import GalleryLinks from "@components/GalleryLinks.astro"
+import Reviews from "@components/Reviews.astro"
 
 const gallery = await getCollection("gallery")
 const galleryLR = await Promise.all(
@@ -32,6 +33,7 @@ const galleryLR = await Promise.all(
 	<Fragment slot="head">
 		<GalleryLinks gallery={galleryLR} />
 	</Fragment>
+	<Reviews />
 	<Gallery gallery={galleryLR} />
 	<Contact />
 </BaseLayout>

@@ -12,19 +12,19 @@
 		"format:write": "prettier --write ."
 	},
 	"dependencies": {
-		"@astro-community/astro-embed-youtube": "^0.5.7",
-		"@astrojs/check": "^0.9.5",
-		"@astrojs/netlify": "^6.6.0",
+		"@astro-community/astro-embed-youtube": "^0.5.9",
+		"@astrojs/check": "^0.9.6",
+		"@astrojs/netlify": "^6.6.3",
 		"@iconify-json/mdi": "^1.2.3",
-		"@tailwindcss/vite": "^4.1.16",
-		"astro": "^5.15.3",
+		"@tailwindcss/vite": "^4.1.18",
+		"astro": "^5.16.6",
 		"astro-icon": "^1.1.5",
-		"tailwindcss": "^4.1.16",
+		"tailwindcss": "^4.1.18",
 		"typescript": "^5.9.3"
 	},
 	"devDependencies": {
-		"prettier": "^3.6.2",
+		"prettier": "^3.7.4",
 		"prettier-plugin-astro": "^0.14.1",
-		"prettier-plugin-tailwindcss": "^0.7.1"
+		"prettier-plugin-tailwindcss": "^0.7.2"
 	}
 }
