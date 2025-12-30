@@ -5,7 +5,7 @@
 		/* Prevent horizontal scroll bounce in iOS */
 		-webkit-overflow-scrolling: touch;
 		/* Enable momentum scrolling on iOS */
-		overscroll-behavior: contain;
+		/* overscroll-behavior: contain; */
 
 		/* Firefox scrollbar styling */
 		scrollbar-width: thin;

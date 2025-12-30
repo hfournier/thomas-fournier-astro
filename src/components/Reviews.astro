@@ -4,7 +4,7 @@ import Review from "./Review.astro"
 ---
 
 <section
-	class="scrollable my-24 grid snap-x snap-mandatory snap-start auto-cols-[100%] grid-flow-col overflow-x-auto pb-4"
+	class="scrollable my-24 grid snap-x snap-mandatory auto-cols-[100%] grid-flow-col overflow-x-auto pb-4"
 >
 	{showReviews.map((showReview) => <Review review={showReview.review} show={showReview.show} />)}
 </section>
