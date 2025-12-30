@@ -38,9 +38,22 @@ const { review, show } = Astro.props
 	<div class="mx-auto flex flex-col items-end px-4 text-sm md:px-8">
 		<div class="text-right">{show.role}</div>
 		<div class="text-right font-semibold">{show.title}</div>
-		<div class="">
-			<a class="underline underline-offset-4" href={show.link}>{show.company}</a>
-			<span>, {show.when}</span>
-		</div>
+		{
+			show.link && (
+				<div>
+					<a class="underline underline-offset-4" href={show.link}>
+						{show.company}
+					</a>
+					<span>, {show.when}</span>
+				</div>
+			)
+		}
+		{
+			!show.link && (
+				<div>
+					{show.company}, {show.when}
+				</div>
+			)
+		}
 	</div>
 </div>
