@@ -16,11 +16,15 @@ type Review = {
 		when: string
 		link: string
 	}
+	index: number
 }
-const { review, show } = Astro.props
+const { review, show, index } = Astro.props
 ---
 
-<div class="snap-center space-y-4 bg-neutral-900 md:space-y-8 lg:space-y-12">
+<div
+	class="group translate-x-full space-y-4 bg-neutral-900 opacity-0 transition-[opacity,translate] duration-500 ease-in-out [grid-area:stack] md:space-y-8 lg:space-y-12"
+	data-tab={index}
+>
 	<figure>
 		<QuoteLeft class="size-16 fill-neutral-600 pl-4 md:size-24 md:pl-8 lg:size-32" />
 		<blockquote class="mx-auto w-4/5 font-medium" cite={review.link}>
@@ -29,19 +33,20 @@ const { review, show } = Astro.props
 		<figcaption class="mx-auto w-4/5 text-sm font-normal text-neutral-300">
 			{review.reviewer}
 			<cite class="">
-				- <a class="underline-offset-4 hover:underline" href={review.link}>{review.publisher}</a
+				- <a class="underline-offset-4 group-hover:underline" href={review.link}
+					>{review.publisher}</a
 				></cite
 			>
 		</figcaption>
 		<QuoteRight class="ml-auto size-16 fill-neutral-600 pr-4 md:size-24 md:pr-8 lg:size-32" />
 	</figure>
-	<div class="mx-auto flex flex-col items-end px-4 text-sm md:px-8">
+	<div class="mx-auto flex flex-col items-end px-4 text-sm text-neutral-300 md:px-8">
 		<div class="text-right">{show.role}</div>
 		<div class="text-right font-semibold">{show.title}</div>
 		{
 			show.link && (
 				<div>
-					<a class="underline underline-offset-4" href={show.link}>
+					<a class="underline-offset-4 group-hover:underline" href={show.link}>
 						{show.company}
 					</a>
 					<span>, {show.when}</span>
