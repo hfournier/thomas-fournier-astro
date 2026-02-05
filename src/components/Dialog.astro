@@ -42,12 +42,23 @@ const { item, class: classList, ...attrs } = Astro.props
 			<slot />
 		</div>
 		<footer class="flex">
-			<div class="w-0 min-w-0 grow space-y-1.5 bg-neutral-50 pt-4">
+			<div class="w-0 min-w-0 grow space-y-0.5 bg-neutral-50 pt-4">
 				<h3 class="font-josefin text-xl font-medium">{item.data.role}</h3>
 				<div class="text-base font-medium">{item.data.play}</div>
 				{item.data.author && <div class="text-sm">Written by {item.data.author}</div>}
-				{item.data.credit && <div class="text-sm">Photo credit: {item.data.credit}</div>}
+				{item.data.book && <div class="text-sm">Book by {item.data.book}</div>}
+				{
+					item.data.music && item.data.lyrics && item.data.music === item.data.lyrics ? (
+						<div class="text-sm">Music and lyrics by {item.data.music}</div>
+					) : (
+						<>
+							{item.data.lyrics && <div class="text-sm">Lyrics by {item.data.lyrics}</div>}
+							{item.data.music && <div class="text-sm">Music by {item.data.music}</div>}
+						</>
+					)
+				}
 				{item.data.attribution && <p class="text-sm">{item.data.attribution}</p>}
+				{item.data.credit && <div class="text-sm">Photo credit: {item.data.credit}</div>}
 			</div>
 		</footer>
 	</div>

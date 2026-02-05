@@ -1,0 +1,80 @@
+[
+	{
+		"show": {
+			"title": "Sweeney Todd - The Demon Barber of Fleet Street",
+			"role": "Sweeney Todd",
+			"company": "HorrorShow Productions",
+			"when": "Dec 2025",
+			"link": "https://horrorshowproductions.com/"
+		},
+		"review": {
+			"reviewer": "Geoffrey Coulter",
+			"publisher": "Other Theatre Voice",
+			"heading": "Horrorshow's SWEENEY TODD is a bold and impressive killer production that entertains while challenging community theatres.",
+			"comment": "As Sweeney, Thomas Fournier is commanding and focused, delivering a powerful baritone. His transformation from vengeful convict to murderous madman is chillingly authentic.",
+			"link": "https://ourtheatrevoice.com/horrorshows-sweeney-todd-is-a-bold-and-impressive-killer-production-that-entertains-while-challenging-community-theatres/"
+		}
+	},
+	{
+		"show": {
+			"title": "Sweeney Todd - The Demon Barber of Fleet Street",
+			"role": "Sweeney Todd",
+			"company": "HorrorShow Productions",
+			"when": "Dec 2025",
+			"link": "https://horrorshowproductions.com/"
+		},
+		"review": {
+			"reviewer": "Arpita Ghosal",
+			"publisher": "Sesaya Arts Magazine",
+			"heading": "Review: Attend this tale of “Sweeney Todd” - it's killer.",
+			"comment": "Fournier's Todd is brooding and tightly coiled, his stillness more menacing than his outbursts. Finding nuance in the character's grief and fury, he is more tormented, grieving husband and father than crazed murderer, and charts a believable descent without sacrificing vocal power.",
+			"link": "https://www.sesayarts.com/review-attend-this-tale-of-sweeney-todd-its-killer/"
+		}
+	},
+	{
+		"show": {
+			"title": "Sweeney Todd - The Demon Barber of Fleet Street",
+			"role": "Sweeney Todd",
+			"company": "HorrorShow Productions",
+			"when": "Dec 2025",
+			"link": "https://horrorshowproductions.com/"
+		},
+		"review": {
+			"reviewer": "ross",
+			"publisher": "front mezz junkies",
+			"heading": "More Pies Please: A Deliciously Dark “Sweeney Todd” by HorrorShow Productions Thrills at The Alumnae",
+			"comment": "Fournier is both subtle and a powerhouse, completely captivating and astonishing in a part that is beyond demanding, to say the least. His entry vocals defy the community theatre odds, sounding as glorious as one could ever hope for from any production. But it is in his menacing glare that we find a Sweeney that we can both desire and be completely afraid of, like the chilling predator he is.",
+			"link": "https://frontmezzjunkies.com/2025/12/07/more-pies-please-a-deliciously-dark-sweeney-todd-by-horrorshow-productions-thrills-at-the-alumnae/"
+		}
+	},
+	{
+		"show": {
+			"title": "The Last Five Years",
+			"role": "Jamie",
+			"company": "Self-Produced",
+			"when": "Jan 2019"
+		},
+		"review": {
+			"reviewer": "J.P. Squire",
+			"publisher": "The Kelowna Courier",
+			"heading": "The Last Five Years: He sings, she sings",
+			"comment": "Fournier — who wears many hats as company creator, artistic director, actor, singer... is the consummate professional...  he expresses a wide range of emotions as their relationship goes through the ups and downs... Both [actors] show a level of acting maturity that belies their young ages in tackling this ambitious musical favourite. My personal highlight was Jamie's animated rendition of The [Schmuel Song]...",
+			"link": "https://www.kelownadailycourier.ca/entertainment/article_c83ab15c-12e7-11e9-a2ae-37e71fb033d7.html"
+		}
+	},
+	{
+		"show": {
+			"title": "Hedwig and the Angry Inch",
+			"role": "Hedwig",
+			"company": "Fred Skeleton Theatre Co.",
+			"when": "Oct 2018"
+		},
+		"review": {
+			"reviewer": "J.P. Squire",
+			"publisher": "The Kelowna Courier",
+			"heading": "Hedwig and the Angry Inch is strange, yet wonderful",
+			"comment": "He [Fournier] not only has the vocal pipes but he can emote - like no one seen in the Central Okanagan in recent years... In addition, not only can Fournier portray a complex gender identity but he can obviously memorize reams of a complicated script, speaking to the audience like a stand-up comedian and singing for two hours non-stop. It is simply an amazing performance...",
+			"link": "https://www.kelownadailycourier.ca/entertainment/article_1b78e15c-cf33-11e8-bc8d-17d4d6ba214c.html"
+		}
+	}
+]

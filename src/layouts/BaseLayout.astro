@@ -26,6 +26,7 @@ const siteName = "Thomas Fournier"
 		<slot name="head" />
 		<title>{title}</title>
 		<meta name="description" content={description} />
+		<meta name="robots" content="index, follow" />
 		<meta property="og:title" content={title} />
 		<meta property="og:description" content={description} />
 		<meta property="og:type" content="profile" />
@@ -41,7 +42,7 @@ const siteName = "Thomas Fournier"
 		<meta property="profile:last_name" content={lastName} />
 	</head>
 	<body class="font-montserrat mx-auto max-w-7xl bg-neutral-900 text-neutral-100">
-		<main class="snap-y snap-mandatory">
+		<main class="">
 			<slot />
 		</main>
 		<Footer />

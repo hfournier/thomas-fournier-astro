@@ -1,0 +1,44 @@
+---
+import showReviews from "../data/reviews.json"
+import Review from "./Review.astro"
+---
+
+<section
+	class:list={[
+		"mx-auto w-fit space-y-4 bg-radial-[at_50%_20%] from-neutral-800 from-20% to-neutral-900 to-65% p-8",
+		"has-[input[value='0']:checked]:**:data-[tab='0']:translate-x-0 has-[input[value='0']:checked]:**:data-[tab='0']:opacity-100",
+		"has-[input[value='1']:checked]:**:data-[tab='1']:translate-x-0 has-[input[value='1']:checked]:**:data-[tab='1']:opacity-100",
+		"has-[input[value='2']:checked]:**:data-[tab='2']:translate-x-0 has-[input[value='2']:checked]:**:data-[tab='2']:opacity-100",
+		"has-[input[value='3']:checked]:**:data-[tab='3']:translate-x-0 has-[input[value='3']:checked]:**:data-[tab='3']:opacity-100",
+		"has-[input[value='4']:checked]:**:data-[tab='4']:translate-x-0 has-[input[value='4']:checked]:**:data-[tab='4']:opacity-100"
+	]}
+>
+	<div
+		class="grid max-w-fit grid-flow-col place-items-center gap-0 overflow-x-clip [grid-template-areas:stack]"
+	>
+		{
+			showReviews.map((showReview, index) => (
+				<Review review={showReview.review} show={showReview.show} {index} />
+			))
+		}
+	</div>
+
+	<div class="flex items-center justify-center gap-2 md:gap-4">
+		{
+			showReviews.map((_, index) => (
+				<label
+					class="grid cursor-pointer grid-cols-[40px] grid-rows-[40px] place-items-center has-checked:cursor-default"
+					aria-label={`Show quote ${index + 1}`}
+				>
+					<input
+						class="h-1 w-full appearance-none bg-neutral-600 checked:bg-neutral-300"
+						type="radio"
+						name="tab"
+						value={index}
+						checked={index === 0 ? true : undefined}
+					/>
+				</label>
+			))
+		}
+	</div>
+</section>
