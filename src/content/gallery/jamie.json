@@ -2,6 +2,8 @@
 	"image": "@assets/gallery/jamie.jpg",
 	"role": "Jamie",
 	"play": "The Last Five Years",
-	"author": "Jason Robert Brown",
+	"book": "Jason Robert Brown",
+	"lyrics": "Jason Robert Brown",
+	"music": "Jason Robert Brown",
 	"sortOrder": 20
 }
